@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app>
+<head >
+<script src="angular.js"></script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+</head>
+<body>
+  Search<input  type="search" ng-model="search" />
+<div ng-controller="List">
+  <ul>
+    <li ng-repeat="person in people | filter:search">{{person.name}}({{person.age}})</li>
+  </ul>
+  Name<input type="text" ng-model="new_name"><br/>
+  Age<input type="number" ng-model="new_age"></br>
+  <button ng-click="add()">Add User</button>
+</div>
+
+<script>
+  var List=function($scope){
+    $scope.people=[{name:"tom",age:33},
+                  {name:"jack",age:23},
+                 {name:"alan",age:43},];
+    $scope.add=function (){
+                   $scope.people.push(
+                   {name:$scope.new_name,age:$scope.new_age}   
+                   );
+               $scope.new_name='';
+                   $scope.new_age='';
+                   }
+  }  
+</script>
+
+
+</body>
+</html>

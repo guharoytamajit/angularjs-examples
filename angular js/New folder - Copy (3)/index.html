@@ -1,0 +1,19 @@
+<html ng-app='myApp'>
+<head>
+<title>Your Shopping Cart</title>
+<script src="../angular.js"></script>
+<script src="controller.js"></script>
+
+</head>
+<body ng-controller='CartController'>
+<h1>Your Order</h1>
+<div ng-repeat='item in items'>
+<span>{{item.title}}</span>
+<input ng-model='item.quantity'>
+<span>{{item.price | currency}}</span>
+<span>{{item.price * item.quantity | currency}}</span>
+<button ng-click="remove($index)">Remove</button>
+</div>
+
+</body>
+</html>

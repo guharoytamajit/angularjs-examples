@@ -1,0 +1,23 @@
+<html>
+<script src="angular.js"></script>
+<div ng-app="myApp">
+<span enter leave>Enter here</span>
+</div>
+<script>
+var app=angular.module("myApp",[]);
+app.directive("enter",function(){
+return function(scope,element){
+element.bind("mouseenter",function(){
+console.log("you entered");
+});
+}
+});
+app.directive("leave",function(){
+return function(scope,element){
+element.bind("mouseleave",function(){
+console.log("you left");
+});
+}
+});
+</script>
+</html>

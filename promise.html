@@ -1,0 +1,22 @@
+<div ng-app="MyApp">
+
+<div ng-controller="MyCtrl">
+
+</div>
+</div>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+angular.module('MyApp',[])
+.controller('MyCtrl',function($q){
+
+var defer=$q.defer();
+console.log($q);
+defer.promise
+.then(function(wepon){alert(wepon); return "bow"})
+.then(function(wepon){alert(wepon); return "axe"})
+.then(function(wepon){alert(wepon); });
+
+defer.resolve("showd");
+});
+
+</script>

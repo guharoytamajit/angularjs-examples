@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="mod1">
+<head >
+<script src="angular.js"></script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+</head>
+<body>
+  <div ng-controller="test">
+  
+  {{message}}
+  </div>
+  <script>
+    angular.module("mod1",[])
+    .controller("test",["$scope",function(s){
+     s.message="tamajit" 
+    }]
+    );
+  </script>
+</body>
+</html>

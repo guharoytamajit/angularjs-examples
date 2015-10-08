@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<script src="bower_components/angular/angular.js"></script>
+  <style>
+    input.ng-invalid{border : 2px solid red;}
+  </style>
+</head>
+<body ng-controller="MyController">
+<table>
+  <input ng-model="per" placeholder="Search">
+  <tr ng-repeat="person in list | filter:per">
+    <td>{{person.name}}</td>
+    <td>{{person.password}}</td>
+  </tr>
+  </table>
+  <form ng-submit="submit();" name="frm">
+    <div>
+    Name:<input type="text" name="username" ng-model="user.name" required>
+      <span ng-show="frm.username.$error.required">Required!</span>
+    </div>    <div>
+    pass :<input ng-model="user.password" 
+                 ng-minlength="3" name="pass" ng-maxlength="7" required>
+    <span ng-show="frm.pass.$error.required">Required!</span>
+    <span ng-show="frm.pass.$error.minlength">min len is 3</span>
+    <span ng-show="frm.pass.$error.maxlength">max len is 7</span>
+        </div>
+    <input  type="submit" ng-disabled="frm.$pristine  || frm.$invalid"/>
+  </form>
+{{user|json}}
+  <script>
+    var app = angular.module('myApp', []);
+app.controller("MyController",function($scope,myFactory){
+  $scope.list=[{name:"jack",password:10},{name:"ales",password:10}
+  ];
+  $scope.submit=function(){
+ myFactory.addUser(angular.copy($scope.user),$scope.list);
+  $scope.user={};
+  };
+  
+});
+app.factory("myFactory",[function(){
+var wrapper={};
+wrapper.addUser=function(user,userList){
+userList.push(user);
+return userList;
+}
+return wrapper;
+}]);
+  </script>  
+</body>
+</html>

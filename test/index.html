@@ -1,0 +1,54 @@
+<html>
+<script src="angular.js"></script>
+<div ng-app="myApp" ng-controller="myCntr">
+<input ng-model="em">
+
+<table>
+<tr><td><input ng-model="employee.name"></td><td><input ng-model="employee.age"></td><td><input ng-model="employee.sex"></td></tr>
+<tr><td>Name</td><td>Age</td><td>Sex</td><td></td><td></td></tr>
+<tr ng-repeat="emp in empList.emps | filter:employee | filter:em"><td>{{emp.name}}</td><td>{{emp.age}}</td><td>{{emp.sex}}</td><td><input type="button" value="delete" ng-click="delete($index)"/></td></tr>
+<tr><td><input ng-model="newEmp.name"></td><td><input ng-model="newEmp.age"></td><td><input ng-model="newEmp.sex"></td><td><input type="button" value="Add" ng-click="add()" /></td></tr>
+</table
+</div>
+<script>
+var app=angular.module("myApp",[]);
+app.controller("myCntr",function($scope,$http){
+$scope.name="tamajit";
+$scope.rev=function(text){return text.split("").reverse().join("");};
+$scope.add=function(){
+$scope.empList.emps.push({name:$scope.newEmp.name,age:$scope.newEmp.age,sex:$scope.newEmp.sex});
+$scope.newEmp.name="";
+$scope.newEmp.age="";
+$scope.newEmp.sex="";
+};
+
+$scope.delete=function(index){
+alert("deteting");
+$scope.empList.emps.splice(index,1);
+};
+$scope.empList={};
+$http.get('http://tamajit:8080/abc/emp').
+  success(function(data, status, headers, config) {
+    // this callback will be called asynchronously
+    // when the response is available
+	alert("success");
+	$scope.empList==data;
+  }).
+  error(function(data, status, headers, config) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+	alert("error");
+  });
+
+
+}
+);
+app.filter("clear",function(){
+return function(text){
+if(text="[object Object]") return "";
+return text;
+}
+}
+);
+</script>
+</html>

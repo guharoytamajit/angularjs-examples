@@ -1,0 +1,13 @@
+<html>
+<script src="angular.js"></script>
+<div ng-app="myApp">
+<input ng-model="data.message"/>
+{{data.message | rev}}
+</div>
+<script>
+var app=angular.module("myApp",[]);
+app.filter("rev",function(){
+return function(text){return text.split("").reverse().join("");}
+});
+</script>
+</html>

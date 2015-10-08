@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app>
+<head >
+<script src="angular.js"></script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+</head>
+<body>
+  <div ng-controller="test">
+  <input type="text" ng-model="message"/>
+<br>
+  {{message}}
+                </div>
+  <script>
+    var test=function(s){
+     s.message="tamajit" 
+    }
+    test.$inject=["$scope"];
+  </script>
+</body>
+</html>

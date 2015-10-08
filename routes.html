@@ -1,0 +1,35 @@
+<html ng-app="myApp">
+<head>
+	
+
+</head>
+<body >
+
+<div ng-controller="myController">
+	<ng-include src="'partials/header.html'"></ng-include>
+<div ng-view></div>
+<ng-view></ng-view>
+<div class="ng-view"></div>
+</div>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script>
+angular.module('myApp',['ngRoute'])
+.config(["$routeProvider","$locationProvider",function($routeProvider,$locationProvider){
+$routeProvider
+.when("/about",{templateUrl:"views/about.html"})
+.when("/home",{templateUrl:"views/home.html"})
+.when("/help/:name",{template:"How may I help? {{name}}",
+controller:"helpCtrl"
+})
+.otherwise({redirectTo:"/home"});
+
+$locationProvider.html5mode(true);
+}])
+.controller('myController',["$scope",function($scope){}])
+.controller('helpCtrl',["$scope","$routeParams",function($scope,$routeParams){
+$scope.name=$routeParams.name;
+}]);
+</script>
+</body>
+</html>

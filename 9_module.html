@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head >
+<script src="angular.js"></script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+</head>
+<body>
+<div ng-controller="MyController">
+{{name}}
+</div>
+</body>
+<script>
+angular.module('myModule',[])
+.controller('MyController',function($scope){
+$scope.name="hello";
+});
+</script>
+</html>

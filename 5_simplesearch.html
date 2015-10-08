@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app>
+<head >
+<script src="angular.js"></script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+</head>
+<body>
+  <input type="search" ng-model="search" />
+<div ng-controller="List">
+  <ul>
+    <li ng-repeat="name in names | filter:search">{{name}}</li>
+  </ul>
+</div>
+
+<script>
+  var List=function($scope){
+  $scope.names=["tom","jack","alan"];
+  
+  }  
+</script>
+
+
+</body>
+</html>

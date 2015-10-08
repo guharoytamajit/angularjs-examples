@@ -1,0 +1,30 @@
+<html>
+
+<style>
+.highlight{
+background-color:aqua;
+}
+</style>
+<script src="angular.js"></script>
+<div ng-app="myApp">
+
+<span enter="highlight" >Enter here</span>
+</div>
+<script>
+var app=angular.module("myApp",[]);
+app.directive("enter",function(){
+return function(scope,element,attrs){
+element.bind("mouseenter",function(){
+
+element.addClass(attrs.enter);
+});
+
+element.bind("mouseleave",function(){
+
+element.removeClass(attrs.enter);
+});
+}
+});
+
+</script>
+</html>
